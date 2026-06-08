@@ -1,6 +1,13 @@
 import { redirect } from '@sveltejs/kit';
-import type { Actions } from './$types';
-import type { PageServerLoad } from './$types';
+import type { Actions, PageServerLoad, RequestEvent } from './$types';
+
+const clearAuthCookies = (event: RequestEvent, response: Response) => {
+	for (const rawCookie of response.headers.getSetCookie()) {
+		const separator = rawCookie.indexOf('=');
+		const name = rawCookie.slice(0, separator);
+		event.cookies.delete(name, { path: '/' });
+	}
+};
 
 export const load: PageServerLoad = (event) => {
 	if (!event.locals.user) {
@@ -11,11 +18,9 @@ export const load: PageServerLoad = (event) => {
 
 export const actions: Actions = {
 	signOut: async (event) => {
-		const { auth } = event.locals;
+		const response = await event.fetch('/api/auth/sign-out', { method: 'POST' });
+		clearAuthCookies(event, response);
 
-		await auth.api.signOut({
-			headers: event.request.headers
-		});
 		return redirect(302, '/demo/better-auth/login');
 	}
 };

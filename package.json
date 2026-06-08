@@ -50,6 +50,7 @@
 		"void": "^0.9.2"
 	},
 	"dependencies": {
+		"@convex-dev/better-auth": "^0.12.2",
 		"convex": "^1.40.0",
 		"convex-svelte": "^0.0.12",
 		"neverthrow": "^8.2.0",
