@@ -36,11 +36,14 @@ trustPolicyExclude:
 # enable packages whose postinstall is genuinely required.
 allowBuilds:
   # Native bundler; postinstall fetches the platform-specific binary.
+  better-sqlite3: true
   esbuild: true
   # Native bundler; postinstall fetches the platform-specific binary.
   rolldown: true
+  sharp: true
   # Native module resolver used by some toolchains.
   unrs-resolver: true
+  workerd: true
 
 # SECURITY: fail the install if a dependency wants to run a build
 # script that isn't in the allow-list above. Without this, new

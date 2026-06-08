@@ -8,7 +8,7 @@ declare global {
 		interface Locals {
 			user?: User;
 			session?: Session;
-			auth: ReturnType<typeof createAuth>
+			auth: ReturnType<typeof createAuth>;
 		}
 
 		// interface Error {}

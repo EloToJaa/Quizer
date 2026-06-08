@@ -13,3 +13,5 @@ Convex agent skills for common tasks can be installed by running
 <!-- convex-ai-end -->
 
 If `pnpm` or `node` is not available in the shell, run commands through `nix develop` so the project toolchain is loaded.
+
+Use `neverthrow` for fallible TypeScript operations instead of throwing exceptions or returning ad-hoc error shapes.
