@@ -16,6 +16,12 @@ minimumReleaseAge: 4320
 # pipeline that produced earlier provenance.
 trustPolicy: no-downgrade
 
+# Exact exemptions for legitimate trust-regression metadata on selected
+# transitive packages. Keep version-specific so trustPolicy remains active.
+trustPolicyExclude:
+  - 'undici-types@6.21.0'
+  - 'chokidar@4.0.3'
+
 # Disabled intentionally. Skipping the trust check for older
 # versions sounds useful for genuinely pre-provenance packages
 # (npm provenance launched April 2023), but any value near
