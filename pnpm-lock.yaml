@@ -60,6 +60,9 @@ importers:
       '@types/node':
         specifier: ^22
         version: 22.19.19
+      '@varlock/bitwarden-plugin':
+        specifier: ^1.0.0
+        version: 1.0.0(varlock@1.5.1)
       '@vitest/browser-playwright':
         specifier: ^4.1.3
         version: 4.1.8(playwright@1.60.0)(vite@8.0.16(@types/node@22.19.19)(esbuild@0.28.0)(jiti@2.7.0)(tsx@4.22.4))(vitest@4.1.8)
@@ -108,6 +111,9 @@ importers:
       typescript-eslint:
         specifier: ^8.58.1
         version: 8.60.1(eslint@10.4.1(jiti@2.7.0))(typescript@6.0.3)
+      varlock:
+        specifier: ^1.5.1
+        version: 1.5.1
       vite:
         specifier: ^8.0.7
         version: 8.0.16(@types/node@22.19.19)(esbuild@0.28.0)(jiti@2.7.0)(tsx@4.22.4)
@@ -1850,6 +1856,12 @@ packages:
     resolution: {integrity: sha512-EbGRQg4FhrmwLodl+t3JNAnXHWVr9Vp+Zl1QBZVPY4ByfkzIT8cX3K6QWODHtkIZqqJVEWvhHSx3v5PDHsaQag==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
+  '@varlock/bitwarden-plugin@1.0.0':
+    resolution: {integrity: sha512-n6J67ybBzFMKkR39NqqDWSNNoJDFdq1qUay/F//5qRwDhBVAem608XhZAcxpA0uWwTKnOonljjkZDlhrG42Drw==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      varlock: ^1.0.0
+
   '@vitest/browser-playwright@4.1.8':
     resolution: {integrity: sha512-SR7FqgegaexEg73xvf3ArtygXegagMdXnL0EZMpxrWvvhQxvicD/E8p0ib0J91riPRtQUViyh67Xjw3NqvyhVg==}
     peerDependencies:
@@ -3335,6 +3347,11 @@ packages:
       typescript:
         optional: true
 
+  varlock@1.5.1:
+    resolution: {integrity: sha512-mJZGABXguQn4JHUm0ZkJpjffYZnmIe5oMyjPaMxsyYBsI1lsuvj8s2R4aq2bCLRz0glanjW7pYmIUSdyiqU2eQ==}
+    engines: {bun: '>=1.3.3', node: '>=22'}
+    hasBin: true
+
   vite@8.0.16:
     resolution: {integrity: sha512-h9bXPmJichP5fLmVQo3PyaGSDE2n3aPuomeAlVRm0JLmt4rY6zmPKd59HYI4LNW8oTK7tlTsuC7l/m7awx9Jcw==}
     engines: {node: ^20.19.0 || >=22.12.0}
@@ -4740,6 +4757,10 @@ snapshots:
       '@typescript-eslint/types': 8.60.1
       eslint-visitor-keys: 5.0.1
 
+  '@varlock/bitwarden-plugin@1.0.0(varlock@1.5.1)':
+    dependencies:
+      varlock: 1.5.1
+
   '@vitest/browser-playwright@4.1.8(playwright@1.60.0)(vite@8.0.16(@types/node@22.19.19)(esbuild@0.28.0)(jiti@2.7.0)(tsx@4.22.4))(vitest@4.1.8)':
     dependencies:
       '@vitest/browser': 4.1.8(vite@8.0.16(@types/node@22.19.19)(esbuild@0.28.0)(jiti@2.7.0)(tsx@4.22.4))(vitest@4.1.8)
@@ -6063,6 +6084,8 @@ snapshots:
   valibot@1.4.1(typescript@6.0.3):
     optionalDependencies:
       typescript: 6.0.3
+
+  varlock@1.5.1: {}
 
   vite@8.0.16(@types/node@22.19.19)(esbuild@0.28.0)(jiti@2.7.0)(tsx@4.22.4):
     dependencies:
