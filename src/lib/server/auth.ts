@@ -3,7 +3,7 @@ type AuthSession = {
 	user: App.Locals['user'];
 };
 
-const normalizeConvexSiteUrl = (convexSiteUrl: string) => {
+const normalizeConvexSiteUrl = (convexSiteUrl: string | undefined) => {
 	if (!convexSiteUrl) {
 		throw new Error('PUBLIC_CONVEX_SITE_URL is not set.');
 	}
@@ -32,7 +32,7 @@ const forwardedHeaders = (request: Request, convexSiteUrl: string) => {
 	return headers;
 };
 
-export const proxyBetterAuthRequest = (request: Request, convexSiteUrl: string) => {
+export const proxyBetterAuthRequest = (request: Request, convexSiteUrl: string | undefined) => {
 	const siteUrl = normalizeConvexSiteUrl(convexSiteUrl);
 	const requestUrl = new URL(request.url);
 
@@ -45,7 +45,7 @@ export const proxyBetterAuthRequest = (request: Request, convexSiteUrl: string) 
 	} as RequestInit & { duplex: 'half' });
 };
 
-export const getAuthSession = async (request: Request, convexSiteUrl: string) => {
+export const getAuthSession = async (request: Request, convexSiteUrl: string | undefined) => {
 	const siteUrl = normalizeConvexSiteUrl(convexSiteUrl);
 	const requestUrl = new URL(request.url);
 	const sessionUrl = new URL('/api/auth/get-session', siteUrl);

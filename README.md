@@ -29,6 +29,15 @@ npm run dev
 npm run dev -- --open
 ```
 
+## Better Stack logs
+
+Server-side request and SvelteKit error logs are sent to Better Stack when
+`BETTER_STACK_SOURCE_TOKEN` is configured.
+
+Set `BETTER_STACK_INGESTING_HOST` when your Better Stack source uses a custom
+ingesting host. Set `BETTER_STACK_LOG_REQUESTS=false` to keep error logging
+enabled while disabling request summary logs.
+
 ## Building
 
 To create a production version of your app:
