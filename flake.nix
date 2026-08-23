@@ -28,13 +28,40 @@
         ];
 
         env = [
+          {
+            name = "LD_LIBRARY_PATH";
+            value = pkgs.lib.makeLibraryPath (with pkgs; [
+              alsa-lib
+              at-spi2-core
+              cairo
+              cups
+              dbus
+              expat
+              glib
+              gtk3
+              libgbm
+              libdrm
+              libxkbcommon
+              libx11
+              libxcb
+              libxcomposite
+              libxdamage
+              libxext
+              libxfixes
+              libxrandr
+              mesa
+              nspr
+              nss
+              pango
+            ]);
+          }
         ];
 
         commands = [
           {
             name = "web";
             help = "Run the frontend dev server";
-            command = "pnpm --dir frontend dev";
+            command = "pnpm dev";
           }
         ];
       };

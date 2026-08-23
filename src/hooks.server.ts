@@ -19,6 +19,10 @@ const handleParaglide: Handle = ({ event, resolve }) =>
 	});
 
 const handleBetterAuth: Handle = async ({ event, resolve }) => {
+	if (!publicEnv.PUBLIC_CONVEX_SITE_URL) {
+		return resolve(event);
+	}
+
 	const session = await getAuthSession(event.request, publicEnv.PUBLIC_CONVEX_SITE_URL);
 
 	if (session) {

@@ -1,22 +1,18 @@
-# sv
+# Quizer
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Quizer is an image-rich quiz creator built with SvelteKit and Convex. Signed-in creators can
+draft quizzes, add ordered questions and answers, attach UploadThing images with accessible
+descriptions, choose answer keys, and publish a shareable link. Players can answer without an
+account and receive a server-scored review without exposing the answer key beforehand.
 
-## Creating a project
+## Stack
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```sh
-# create a new project
-npx sv create my-app
-```
-
-To recreate this project with the same configuration:
-
-```sh
-# recreate this project
-pnpm dlx sv@0.15.4 create --template minimal --types ts --add prettier eslint vitest="usages:unit,component" playwright tailwindcss="plugins:typography" better-auth="demo:password" paraglide="languageTags:en, pl+demo:yes" --install pnpm quizer
-```
+- Svelte 5, SvelteKit, TypeScript, and Tailwind CSS
+- Convex for quiz data, authorization, publishing, and scoring
+- Better Auth with Convex-backed email/password sessions
+- UploadThing for quiz, question, and answer images
+- Cloudflare Workers, Varlock/Bitwarden secrets, and optional Better Stack logging
+- Vitest, `convex-test`, browser component tests, and Playwright E2E tests
 
 ## Managing environment secrets
 
@@ -43,7 +39,9 @@ Required application variables:
 - `SITE_URL`: public SvelteKit app URL.
 - `BETTER_AUTH_SECRET`: Better Auth secret; prefer a Bitwarden-backed value outside local-only development.
 - `CONVEX_DEPLOYMENT`: Convex deployment name written by the Convex CLI.
+- `PUBLIC_CONVEX_URL`: Convex client URL ending in `.convex.cloud`.
 - `PUBLIC_CONVEX_SITE_URL`: Convex site URL ending in `.convex.site`.
+- `UPLOADTHING_TOKEN`: private UploadThing API token.
 
 ## Developing
 
@@ -61,6 +59,19 @@ Run the Convex development server in another terminal:
 ```sh
 pnpm convex
 ```
+
+The app remains browsable without Convex variables in local development, but authentication,
+authoring, publishing, and scoring require a configured Convex deployment. Image uploads also
+require `UPLOADTHING_TOKEN`.
+
+## Product routes
+
+- `/` — product landing page
+- `/login` — registration and sign-in
+- `/dashboard` — creator quiz library
+- `/dashboard/new` — create a quiz
+- `/dashboard/quizzes/[quizId]` — question, answer, media, and publishing editor
+- `/quiz/[slug]` — public quiz player and scored review
 
 ## Better Stack logs
 
@@ -80,3 +91,16 @@ pnpm build
 ```
 
 You can preview the production build with `pnpm preview`.
+
+## Verification
+
+```sh
+pnpm check
+pnpm lint
+pnpm test:unit -- --run
+pnpm test:e2e
+pnpm build
+```
+
+On NixOS, enter `nix develop` first. The development shell includes Chromium's runtime
+libraries so browser tests work without a separate FHS environment.

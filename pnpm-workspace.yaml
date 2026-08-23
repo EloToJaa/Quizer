@@ -38,6 +38,8 @@ allowBuilds:
   # Native bundler; postinstall fetches the platform-specific binary.
   better-sqlite3: true
   esbuild: true
+  # Optional msgpack native accelerator; the JavaScript fallback is sufficient.
+  msgpackr-extract: false
   # Native bundler; postinstall fetches the platform-specific binary.
   rolldown: true
   sharp: true
