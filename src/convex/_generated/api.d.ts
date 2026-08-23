@@ -9,13 +9,21 @@
  */
 
 import type * as auth from '../auth.js';
+import type * as answers from '../answers.js';
+import type * as attempts from '../attempts.js';
 import type * as http from '../http.js';
+import type * as questions from '../questions.js';
+import type * as quizzes from '../quizzes.js';
 
 import type { ApiFromModules, FilterApi, FunctionReference } from 'convex/server';
 
 declare const fullApi: ApiFromModules<{
 	auth: typeof auth;
+	answers: typeof answers;
+	attempts: typeof attempts;
 	http: typeof http;
+	questions: typeof questions;
+	quizzes: typeof quizzes;
 }>;
 
 /**
